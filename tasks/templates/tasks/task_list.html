@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Tareas</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <h1>Lista de Tareas</h1>
+    <ul>
+        {% for task in tasks %}
+        <li>
+            {{task.title}} - {% if task.completed %} ✅ {% else %} ❌ {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
