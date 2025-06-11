@@ -1,0 +1,9 @@
+{
+    "compilerOptions": {
+        "target": "ES2015",  // Actualiza a ES2015 o superior
+        "lib": ["ES2015", "DOM"],
+        "strict": true,
+        "module": "CommonJS",
+        "outDir": "static/js"
+    }
+}
