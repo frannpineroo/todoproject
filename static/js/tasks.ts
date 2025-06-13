@@ -40,8 +40,20 @@ class TaskManager {
     }
 
     removeTask(id: number): void {
-        this.tasks = this.tasks.filter(t => t.id !== id);
-        this.saveTasks();
+        const taskElement = document.querySelector(`[data-id="${id}"]`);
+
+        if (taskElement) {
+        taskElement.classList.add("remove-animation");
+
+        console.log("Animación iniciada para la tarea:", id); // Verificar en la consola
+
+        taskElement.addEventListener("animationend", () => {
+            console.log("Animación terminada para la tarea:", id); // Verificar en la consola
+            this.tasks = this.tasks.filter(t => t.id !== id);
+            this.saveTasks();
+            taskElement.remove();
+        });
+    }
     }
 
     saveTasks(): void {
@@ -56,6 +68,7 @@ class TaskManager {
         taskList.innerHTML = "";
         this.tasks.forEach(task => {
             const li = document.createElement("li");
+            li.setAttribute("data-id", task.id.toString());
             li.innerHTML = `
                 <input type="checkbox" ${task.completed ? "checked" : ""} onclick="taskManager.toggleTask(${task.id})">
                 ${task.title}
